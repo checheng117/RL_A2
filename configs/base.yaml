@@ -1,0 +1,48 @@
+# Shared defaults (paths relative to project root unless absolute).
+project:
+  seed: 42
+  base_model: "Qwen/Qwen3.5-0.8B"
+
+paths:
+  project_root: null  # resolved at runtime
+  data_raw_glob: "data/raw/*.jsonl"
+  splits_dir: "data/splits"
+  processed_dir: "data/processed"
+  outputs_dir: "outputs"
+  checkpoints_dir: "outputs/checkpoints"
+  logs_dir: "outputs/logs"
+  predictions_dir: "outputs/predictions"
+  metrics_dir: "outputs/metrics"
+  examples_dir: "outputs/examples"
+  report_assets_dir: "outputs/report_assets"
+
+tokenizer:
+  padding_side: "right"
+  trust_remote_code: true
+
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: "nf4"
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_compute_dtype: "bfloat16"
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: "none"
+  task_type: "CAUSAL_LM"
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+compute:
+  # Prefer bf16 on Ampere if supported; training code may fall back to fp16.
+  bf16: true
+  fp16: false
+  gradient_checkpointing: true

@@ -1,0 +1,33 @@
+# Full-parameter SFT (HuggingFace Trainer). Main task: input = answer_en via processed `prompt`,
+# target = summary_en_chosen via `response` (see formatters + split_dataset).
+# VRAM: 1× RTX 3090 + Qwen3.5-0.8B — shorter max_length + micro-batch 1.
+
+experiment_name: "sft_full_3090"
+
+training:
+  stage: "sft_full"
+  output_subdir: "sft_full_3090"
+  # Teacher MAX_LENGTH=2048; 3090 全参需缩短序列 + 更小 micro-batch（见 IMPLEMENTATION_NOTES）
+  max_length: 1024
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+  learning_rate: 2.0e-5
+  num_train_epochs: 3
+  logging_steps: 10
+  eval_strategy: "epoch"
+  save_strategy: "epoch"
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  save_total_limit: 3
+  dataloader_num_workers: 0
+  smoke_test: false
+  dry_run: false
+  resume_from_checkpoint: null
+
+data:
+  train_file: "data/processed/sft_train.jsonl"
+  validation_file: "data/processed/sft_val.jsonl"
+  test_file: "data/processed/sft_test.jsonl"

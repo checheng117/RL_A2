@@ -1,0 +1,25 @@
+{
+  "seed": 42,
+  "created_utc": "2026-03-24T11:51:38Z",
+  "counts": {
+    "train": 1446,
+    "val": 80,
+    "test": 81,
+    "total": 1607
+  },
+  "ratios": {
+    "train": 0.9,
+    "val": 0.05,
+    "test": 0.05
+  },
+  "sequential_split": false,
+  "main_task_lang": "en",
+  "source_files": {
+    "train_code_with_data/data/train.jsonl": "d32152f1ba64e74ae8988366c2376e71702249c3cda7b0a4e81e25ff0dfe2797"
+  },
+  "fields": {
+    "answer": "answer_en",
+    "chosen": "summary_en_chosen",
+    "rejected": "summary_en_rejected"
+  }
+}

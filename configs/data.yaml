@@ -1,0 +1,37 @@
+# Data pipeline (assignment Part I: English-only main experiment).
+split:
+  seed: 42
+  train_ratio: 0.9
+  val_ratio: 0.05
+  test_ratio: 0.05
+  # Random 90/5/5 (assignment); sequential=false shuffles after filter, then head splits.
+  sequential: false
+  raw_glob: "train_code_with_data/data/train.jsonl"
+  output_dir: "data/splits"
+  summary_path: "outputs/metrics/dataset_split_summary.json"
+  manifest_name: "split_manifest.json"
+  alignment_summary_path: "outputs/metrics/dataset_alignment_summary.json"
+
+# Main SFT/DPO/GRPO targets: English only (answer_en, summary_en_*).
+# Chinese fields remain in raw rows for exploration notebooks only.
+main_task_lang: "en"
+
+fields:
+  primary_language: "en"
+  answer_en: "answer_en"
+  summary_chosen_en: "summary_en_chosen"
+  summary_rejected_en: "summary_en_rejected"
+  answer_zh: "answer_zh"
+  summary_chosen_zh: "summary_zh_chosen"
+  summary_rejected_zh: "summary_zh_rejected"
+
+processed:
+  sft_train: "data/processed/sft_train.jsonl"
+  sft_val: "data/processed/sft_val.jsonl"
+  sft_test: "data/processed/sft_test.jsonl"
+  dpo_train: "data/processed/dpo_train.jsonl"
+  dpo_val: "data/processed/dpo_val.jsonl"
+  dpo_test: "data/processed/dpo_test.jsonl"
+  grpo_train: "data/processed/grpo_train.jsonl"
+  grpo_val: "data/processed/grpo_val.jsonl"
+  grpo_test: "data/processed/grpo_test.jsonl"

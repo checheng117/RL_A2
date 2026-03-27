@@ -1,0 +1,38 @@
+# SFT QLoRA — conservative for 1× RTX 3090 24GB
+# Merge order (CLI): configs/base.yaml configs/data.yaml configs/sft_lora_3090.yaml
+
+experiment_name: "sft_lora_3090"
+
+training:
+  stage: "sft"
+  output_subdir: "sft_lora_3090"
+  max_seq_length: 1024
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-4
+  num_train_epochs: 3
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  lr_scheduler_type: "cosine"
+  logging_steps: 10
+  eval_steps: 200
+  save_steps: 200
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  max_steps: -1
+  # Smoke / dry-run overrides (CLI can set smoke_test: true)
+  smoke_test: false
+  smoke_max_samples: 32
+  smoke_max_steps: 3
+  dry_run: false
+  evaluate_only: false
+  resume_from_checkpoint: null
+
+data:
+  train_file: "data/processed/sft_train.jsonl"
+  validation_file: "data/processed/sft_val.jsonl"
+  test_file: "data/processed/sft_test.jsonl"

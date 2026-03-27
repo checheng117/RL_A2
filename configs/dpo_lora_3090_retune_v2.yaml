@@ -1,0 +1,36 @@
+# DPO retune round 2: lower beta/lr, shorter epochs, tighter max_seq_length vs v1.
+# Merge: base.yaml + data.yaml + this file
+
+experiment_name: "dpo_lora_3090_retune_v2"
+
+training:
+  stage: "dpo"
+  output_subdir: "dpo_lora_3090_retune_v2"
+  sft_adapter_path: "outputs/checkpoints/sft_full_3090/best"
+  max_seq_length: 640
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 1.0e-5
+  beta: 0.05
+  num_train_epochs: 0.35
+  warmup_ratio: 0.05
+  logging_steps: 10
+  eval_steps: 45
+  save_steps: 45
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  max_steps: -1
+  smoke_test: false
+  smoke_max_samples: 24
+  smoke_max_steps: 2
+  dry_run: false
+  evaluate_only: false
+  resume_from_checkpoint: null
+
+data:
+  train_file: "data/processed/dpo_train.jsonl"
+  validation_file: "data/processed/dpo_val.jsonl"
+  test_file: "data/processed/dpo_test.jsonl"

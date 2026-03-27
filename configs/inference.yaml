@@ -1,0 +1,25 @@
+# Merge: base.yaml + this file
+
+inference:
+  # Teacher eval uses plain prompt strings (no chat template).
+  use_chat_template: false
+  max_input_length: 1024
+  max_new_tokens: 512
+  do_sample: false
+  temperature: 0.7
+  top_p: 0.9
+  batch_size: 4
+
+evaluation:
+  # Loose format (format_adherence) is legacy; strict_format_rate penalizes repeated
+  # [point]/[reason]/[summary] blocks (see src/metrics/strict_format_adherence.py).
+  split: "test"
+  predictions_dir: "outputs/predictions"
+  reference_field: "summary_en_chosen"
+  prompt_field: "prompt"
+  source_field: "answer_en"
+  # Official report metric: mean output length in tokenizer tokens (see sft_test_metrics.json).
+  # avg_output_length_chars is auxiliary (debug / readability).
+  output_length_primary: "tokens"
+  # When evaluating a PEFT adapter trained on top of full SFT weights, load this base first.
+  peft_base_checkpoint: "outputs/checkpoints/sft_full_3090/best"

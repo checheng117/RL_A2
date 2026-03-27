@@ -1,0 +1,36 @@
+# Part V / E2 auxiliary run: dense GRPO-V1 checkpoints for fine-grained dynamics / onset analysis.
+# Does NOT replace the official full GRPO-V1 run (grpo_v1_3090); report both sparse mainline + this dense probe.
+
+experiment_name: "grpo_v1_e2_dense"
+
+training:
+  stage: "grpo"
+  output_subdir: "grpo_v1_e2_dense"
+  sft_adapter_path: "outputs/checkpoints/sft_full_3090/best"
+  reward_variant: "v1"
+  max_seq_length: 768
+  max_prompt_length: 512
+  max_completion_length: 256
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  num_generations: 2
+  learning_rate: 1.0e-5
+  # Short run: cap steps so saves land near 50/100/150/200/250/300 (save_steps=50).
+  num_train_epochs: 1
+  max_steps: 300
+  logging_steps: 5
+  save_steps: 50
+  # Keep all intermediate checkpoints (default 2 would delete older saves).
+  save_total_limit: 20
+  beta: 0.04
+  smoke_test: false
+  smoke_max_samples: 16
+  smoke_max_steps: 2
+  dry_run: false
+  evaluate_only: false
+  resume_from_checkpoint: null
+
+data:
+  train_file: "data/processed/grpo_train.jsonl"
+  validation_file: "data/processed/grpo_val.jsonl"
+  test_file: "data/processed/grpo_test.jsonl"

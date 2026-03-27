@@ -1,0 +1,21 @@
+# Pip set for rlhw2_qwen35_3090 (Python 3.10).
+# Install PyTorch first with CUDA wheels, then this file (see scripts/setup_conda.sh).
+# Pinned ranges chosen so pip can resolve: TRL >=0.19 needs accelerate>=1.4 and transformers>=4.50.
+torch>=2.5.0,<2.8.0
+torchvision>=0.20.0
+torchaudio>=2.5.0
+# Qwen3.5: qwen3_5 arch needs transformers>=5.2. TRL 0.22 breaks on transformers 5.x (vision mapping); use 0.23.x.
+transformers>=5.2.0,<5.3.0
+datasets>=3.1.0,<4.0.0
+accelerate>=1.4.0,<2.0.0
+peft>=0.18.0,<0.22.0
+trl>=0.23.0,<0.25.0
+bitsandbytes>=0.45.0,<0.50.0
+sentencepiece>=0.2.0
+protobuf>=3.20.0
+pyyaml>=6.0.1
+rouge-score>=0.1.2
+tqdm>=4.66.0
+numpy>=1.24.0,<2.3.0
+pytest>=7.4.0
+matplotlib>=3.8.0,<3.11.0
