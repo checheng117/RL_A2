@@ -4,6 +4,10 @@ This document is the **single master record** for finished work in this repo: wh
 
 **Freeze policy:** No new training is assumed beyond the checkpoints and metrics already on disk. Cite paths below; do not overwrite `outputs/metrics/*.json` or unified CSVs unless you intentionally re-run evaluation.
 
+## Public final assets (GitHub / TA)
+
+**Curated, version-controlled** tables, analyses, qualitative write-ups, and key figures live in **`docs/final_report_assets/`**. Start from **`docs/final_report_assets/README.md`** (reading order, Part mapping, figure index). The training pipeline still emits the full mirror under **`outputs/report_assets/`**, which is **gitignored** alongside checkpoints, logs, and raw predictions — clone the repo alone and use `docs/final_report_assets/` as the public results window.
+
 ---
 
 ## 1. Project Overview
@@ -31,7 +35,7 @@ Structured **English** summarization with fixed tags: `[point]`, `[reason]` (num
 
 ### Why these results are enough for a strong report
 
-You have: (1) a clear **failure → recovery** story for DPO; (2) **loose vs strict** format metrics exposing template repetition; (3) **unified table** + narrative for SFT / DPO / GRPO; (4) **per-model hacking cases**; (5) **sparse + dense dynamics** for reward saturation, onset heuristics, and early stopping — all with file paths and conservative wording already drafted in `outputs/report_assets/*.md`.
+You have: (1) a clear **failure → recovery** story for DPO; (2) **loose vs strict** format metrics exposing template repetition; (3) **unified table** + narrative for SFT / DPO / GRPO; (4) **per-model hacking cases**; (5) **sparse + dense dynamics** for reward saturation, onset heuristics, and early stopping — all with file paths and conservative wording already drafted in `outputs/report_assets/*.md` (and mirrored for publication under `docs/final_report_assets/`).
 
 ---
 

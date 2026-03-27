@@ -2,6 +2,8 @@
 
 **Relationship to `README.md`:** The **README** is the **full experiment archive** (chronology, numbers, caveats, commands). This file is a **fast lookup**: what to cite where, and the safest one-line framing.
 
+**Quick browse of frozen results in git:** Open **`docs/final_report_assets/README.md`** first — it indexes the curated copies of metrics, analyses, and plots for graders or public clones (without local `outputs/`).
+
 ---
 
 ## Part I — SFT

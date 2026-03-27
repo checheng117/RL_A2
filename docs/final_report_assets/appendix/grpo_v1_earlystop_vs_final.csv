@@ -1,0 +1,3 @@
+checkpoint,avg_reward,rouge_l_f1,strict_format_rate,avg_output_length_tokens,format_rate_loose
+GRPO-V1 step 700 (early),1.0,0.4428189822719608,0.9876543209876543,123.61728395061728,1.0
+GRPO-V1 final (723),1.0,0.4395811886589686,0.9876543209876543,123.61728395061728,1.0
