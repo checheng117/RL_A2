@@ -13,18 +13,6 @@ For this public release, I keep the core implementation, experiment configs, and
 - Split manifest in `data/splits/split_manifest.json`
 - A compact result snapshot in `public_results/`
 
-## What is outside the scope of this public repo
-
-To keep this repository focused and avoid publishing course/internal workspace materials, several local folders are not included here:
-
-- Report workspace and course files (`report/`, course PDFs/DOCX)
-- Working notes and analysis workspace (`docs/`, `analysis/`)
-- Teacher/reference bundle (`train_code_with_data/`)
-- Large runtime artifacts (`outputs/checkpoints/`, `outputs/logs/`, predictions, full metric dumps)
-- Process-oriented scripts and temporary exports
-
-If you need the full course deliverables and complete artifact set, please refer to the course submission materials rather than this public mirror.
-
 ## Repository structure
 
 ```text
@@ -99,11 +87,6 @@ make test
 - `qualitative_case_snapshot.csv`: minimal case-level examples (GRPO-V1/GRPO-V4) supporting qualitative mismatch discussion
 
 These files are meant as lightweight evidence for key conclusions, not as a full release of all experiment artifacts.
-
-## Scope of this public release
-
-In short: this repository is designed for code reading, configuration inspection, and quick result verification.  
-It is not a full reproduction bundle of the entire coursework workspace. Full data-dependent reproduction and complete appendices require the non-public course dataset and the full submission package.
 
 ## License
 
