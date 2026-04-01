@@ -24,6 +24,9 @@ It intentionally includes only compact final CSV summaries, not full predictions
 - `seed_sensitivity_summary.csv`  
   Small cross-seed snapshot for stability sanity check.
 
+- `qualitative_case_snapshot.csv`  
+  Minimal 4-case snapshot (2x GRPO-V1, 2x GRPO-V4) for case-level mismatch checks.
+
 ## Notes
 
 - These files are exported snapshots for public verification only.

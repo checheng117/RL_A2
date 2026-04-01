@@ -1,27 +1,29 @@
-# RL_A2 Public Showcase Repository
+# CSC6129 RL_A2
 
-This repository is a **public code + minimal verification window** for my RL assignment project on structured summarization (`SFT -> DPO -> GRPO`). It is intentionally curated for external readers (e.g., instructor, reviewer) to quickly understand the method, run core code paths, and check key reported metrics without exposing full course submission materials or local experiment workspace artifacts.
+This is the public code repository for my CSC6129 reinforcement learning assignment.  
+The project studies structured summarization with a staged alignment pipeline (`SFT -> DPO -> GRPO`).  
+For this public release, I keep the core implementation, experiment configs, and a small set of result snapshots so that an external reader can quickly understand what was done and sanity-check the main claims.
 
-## What this repository contains
+## What you can find here
 
-- Core implementation in `src/` (training, evaluation, rewards, metrics, inference)
-- Final/primary experiment configurations in `configs/`
-- Minimal runnable scripts in `scripts/`
+- Main implementation in `src/` (training, evaluation, rewards, metrics, inference)
+- Experiment configs in `configs/`
+- Minimal entry scripts in `scripts/`
 - Environment setup files in `environment/`
-- Test split manifest in `data/splits/split_manifest.json`
-- A compact public verification window in `public_results/`
+- Split manifest in `data/splits/split_manifest.json`
+- A compact result snapshot in `public_results/`
 
-## What is intentionally NOT public
+## What is outside the scope of this public repo
 
-The following are intentionally excluded from this public repository and remain local/private:
+To keep this repository focused and avoid publishing course/internal workspace materials, several local folders are not included here:
 
-- Report workspace and course documents (`report/`, course PDFs/DOCX)
-- Local docs/work notes and process artifacts (`docs/`, `analysis/`)
+- Report workspace and course files (`report/`, course PDFs/DOCX)
+- Working notes and analysis workspace (`docs/`, `analysis/`)
 - Teacher/reference bundle (`train_code_with_data/`)
-- Large runtime artifacts (`outputs/checkpoints/`, `outputs/logs/`, predictions, full metrics dumps)
-- Process-only scripts, one-off exports, scratch/temp/legacy backups
+- Large runtime artifacts (`outputs/checkpoints/`, `outputs/logs/`, predictions, full metric dumps)
+- Process-oriented scripts and temporary exports
 
-For complete course deliverables, use the official submission package instead of this GitHub repository.
+If you need the full course deliverables and complete artifact set, please refer to the course submission materials rather than this public mirror.
 
 ## Repository structure
 
@@ -34,13 +36,13 @@ For complete course deliverables, use the official submission package instead of
 |-- data/
 |   `-- splits/
 |       `-- split_manifest.json
-|-- public_results/     # small, curated CSV snapshot for result verification
+|-- public_results/     # compact CSV snapshot for quick verification
 |-- tests/
 |-- README.md
 `-- Makefile
 ```
 
-## Minimal setup
+## Setup
 
 ```bash
 python -m venv .venv
@@ -55,13 +57,17 @@ Or use Conda:
 bash scripts/setup_conda.sh
 ```
 
-## Minimal reproduction commands
+## Main entry points
+
+The commands below are kept to document the primary code paths used in the project.
 
 1) Prepare processed data/splits:
 
 ```bash
 make prepare-data
 ```
+
+The public repo does not include the full raw course dataset, so data preparation and full reruns require access to the non-public dataset bundle.
 
 2) Run core training stages (long-running):
 
@@ -72,30 +78,32 @@ make grpo-v1-full
 make grpo-v4-full
 ```
 
+These are the main training entry points, but running the full pipeline still depends on non-public data and local runtime artifacts (for example, checkpoint/logging workspace).
+
 3) Run tests:
 
 ```bash
 make test
 ```
 
-## Public result snapshot (for quick verification)
+## Public result files
 
-The directory `public_results/` contains a compact set of final CSVs used as a public verification window:
+`public_results/` contains a small set of CSV artifacts for quick cross-checking of reported outcomes:
 
-- `unified_part34_metrics.csv`: unified SFT/DPO/GRPO comparison table
+- `unified_part34_metrics.csv`: unified SFT/DPO/GRPO comparison
 - `paired_bootstrap_ci_summary.csv`: bootstrap confidence intervals for key ROUGE comparisons
-- `pairwise_win_tie_loss.csv`: per-example win/tie/loss summary
+- `pairwise_win_tie_loss.csv`: pairwise win/tie/loss summary on the shared test split
 - `reward_hacking_dynamics_metrics.csv`: sparse E2 checkpoint dynamics summary
-- `e2_kl_probe_metrics.csv`: E2 KL schedule probe result
-- `seed_sensitivity_summary.csv`: cross-seed stability snapshot
+- `e2_kl_probe_metrics.csv`: E2 KL-schedule probe
+- `seed_sensitivity_summary.csv`: seed sensitivity snapshot
+- `qualitative_case_snapshot.csv`: minimal case-level examples (GRPO-V1/GRPO-V4) supporting qualitative mismatch discussion
 
-See `public_results/README.md` for per-file notes and interpretation boundaries.
+These files are meant as lightweight evidence for key conclusions, not as a full release of all experiment artifacts.
 
-## Public vs submission scope
+## Scope of this public release
 
-- This GitHub repo is a **showcase**: core code, configs, minimal scripts, and a small results snapshot.
-- It is **not** a full mirror of local training artifacts or course submission materials.
-- If a reviewer needs full report assets, large logs/checkpoints, or complete appendix materials, those are available only in the official submission package.
+In short: this repository is designed for code reading, configuration inspection, and quick result verification.  
+It is not a full reproduction bundle of the entire coursework workspace. Full data-dependent reproduction and complete appendices require the non-public course dataset and the full submission package.
 
 ## License
 

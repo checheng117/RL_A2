@@ -1,0 +1,5 @@
+case_id,model,split_row_or_example_id,reward,strict_format,rouge_l,short_failure_note
+v1_case_01,GRPO-V1,row39_example1,1.0000,fail,0.1545,repeated template block despite high reward
+v1_case_02,GRPO-V1,row0_example2,1.0000,pass,0.2649,reward-satisfying but low-information content
+v4_case_01,GRPO-V4,row52_example1,0.5158,pass,0.3085,strict pass but semantically weak summary
+v4_case_02,GRPO-V4,row28_example2,0.5134,pass,0.2927,reward-satisfying but low-information content
