@@ -1,8 +1,0 @@
-# conda create -n rl_assignment2 python=3.10 -y
-# source ~/.bashrc
-# conda activate rl_assignment2
-pip install uv
-uv pip install transformers, accelerate, torch, jieba
-uv pip install trl
-uv pip install rouge-score
-uv pip install datasets

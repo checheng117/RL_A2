@@ -1,7 +1,7 @@
 ROOT := $(abspath .)
 export PYTHONPATH := $(ROOT):$(PYTHONPATH)
 
-.PHONY: env-check prepare-data smoke-sft smoke-dpo smoke-grpo-v1 smoke-grpo-v4 eval-all report-assets test lint
+.PHONY: env-check prepare-data sft-full dpo-retune-v2 grpo-v1-full grpo-v4-full test lint
 
 env-check:
 	python environment/check_env.py
@@ -12,23 +12,14 @@ prepare-data:
 sft-full:
 	bash scripts/run_sft_full.sh
 
-smoke-sft:
-	bash scripts/run_sft_smoke.sh
+dpo-retune-v2:
+	bash scripts/run_dpo_retune_v2.sh
 
-smoke-dpo:
-	bash scripts/run_dpo_smoke.sh
+grpo-v1-full:
+	bash scripts/run_grpo_v1_full.sh
 
-smoke-grpo-v1:
-	bash scripts/run_grpo_v1_smoke.sh
-
-smoke-grpo-v4:
-	bash scripts/run_grpo_v4_smoke.sh
-
-eval-all:
-	bash scripts/run_eval_all.sh
-
-report-assets:
-	bash scripts/export_report_assets.sh
+grpo-v4-full:
+	bash scripts/run_grpo_v4_full.sh
 
 test:
 	pytest -q tests/

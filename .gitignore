@@ -31,6 +31,23 @@ env/
 .DS_Store
 Thumbs.db
 
+# Local report/docs workspace (do not publish)
+report/
+docs/
+analysis/
+train_code_with_data/
+
+# Explicit local-only course files
+docs/RTX3090_单卡项目实施蓝图_Qwen3.5_0.8B_Assignment2.docx
+docs/ta_rl_hw2.pdf
+report/*.pdf
+report/*.tex
+report/*.log
+report/*.aux
+report/*.out
+report/*.fls
+report/*.fdb_latexmk
+
 # Project outputs (keep structure via .gitkeep)
 outputs/checkpoints/**
 outputs/logs/**
@@ -59,6 +76,23 @@ data/splits/*
 
 # W&B
 wandb/
+
+# Local process artifacts
+*.log
+tmp/
+temp/
+scratch/
+legacy/
+backup/
+*.bak
+
+# Local exploratory configs/scripts (not for public repo)
+configs/grpo_v1_e2_dense_kl_linear.yaml
+scripts/run_grpo_v1_e2_dense_kl_linear.sh
+scripts/bootstrap_project.sh
+src/evaluation/export_e2_kl_probe.py
+src/evaluation/export_seed_summary.py
+configs/grpo_v5_stub_3090.yaml
 
 # Large archives
 *.bin

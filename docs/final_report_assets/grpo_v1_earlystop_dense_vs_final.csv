@@ -1,3 +1,0 @@
-checkpoint,avg_reward,rouge_l_f1,strict_format_rate,avg_output_length_tokens
-"early (grpo_v1_e2_dense_step200, step 200)",1.0,0.447573950294498,1.0,118.9753086419753
-"final (grpo_v1_e2_dense_step300, step 300)",1.0,0.4413606997556472,1.0,120.95061728395062

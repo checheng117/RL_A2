@@ -7,6 +7,7 @@ import shutil
 from pathlib import Path
 
 from datasets import load_dataset
+from transformers import TrainerCallback
 
 from src.rewards.reward_fn import make_trl_reward_fn
 from src.training.common import apply_dot_overrides, load_merged_config, log_file_path, output_checkpoint_dir
@@ -22,6 +23,46 @@ from src.utils.path_utils import find_project_root, resolve_path
 from src.utils.seed import set_seed
 
 logger = logging.getLogger(__name__)
+
+
+class LinearBetaScheduleCallback(TrainerCallback):
+    """Optional linear beta schedule for GRPO KL coefficient."""
+
+    def __init__(
+        self,
+        trainer,
+        *,
+        start_beta: float,
+        end_beta: float,
+        start_step: int,
+        end_step: int,
+    ) -> None:
+        self.trainer = trainer
+        self.start_beta = float(start_beta)
+        self.end_beta = float(end_beta)
+        self.start_step = int(start_step)
+        self.end_step = int(end_step)
+        if self.end_step <= self.start_step:
+            raise ValueError("beta schedule requires end_step > start_step")
+        self._last_logged_step = -1
+
+    def _beta_at(self, step: int) -> float:
+        if step <= self.start_step:
+            return self.start_beta
+        if step >= self.end_step:
+            return self.end_beta
+        ratio = (step - self.start_step) / (self.end_step - self.start_step)
+        return self.start_beta + ratio * (self.end_beta - self.start_beta)
+
+    def on_step_begin(self, args, state, control, **kwargs):
+        step = int(state.global_step)
+        beta_now = self._beta_at(step)
+        self.trainer.beta = float(beta_now)
+        if step == self.start_step or step == self.end_step or step % max(int(args.logging_steps), 1) == 0:
+            if step != self._last_logged_step:
+                logger.info("KL beta schedule update: step=%d beta=%.6f", step, beta_now)
+                self._last_logged_step = step
+        return control
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -127,6 +168,24 @@ def main() -> None:
         trainer_kw.pop("processing_class", None)
         trainer_kw["tokenizer"] = tokenizer
         trainer = GRPOTrainer(**trainer_kw)
+
+    beta_sched = (tcfg.get("beta_schedule") or {})
+    if isinstance(beta_sched, dict) and str(beta_sched.get("type", "")).lower() == "linear":
+        cb = LinearBetaScheduleCallback(
+            trainer,
+            start_beta=float(beta_sched.get("start_beta", tcfg.get("beta", 0.04))),
+            end_beta=float(beta_sched.get("end_beta", tcfg.get("beta", 0.04))),
+            start_step=int(beta_sched.get("start_step", 0)),
+            end_step=int(beta_sched.get("end_step", tcfg.get("max_steps", 0))),
+        )
+        trainer.add_callback(cb)
+        logger.info(
+            "Enabled linear KL beta schedule: start_beta=%.6f end_beta=%.6f start_step=%d end_step=%d",
+            cb.start_beta,
+            cb.end_beta,
+            cb.start_step,
+            cb.end_step,
+        )
 
     if tcfg.get("dry_run"):
         logger.info("dry_run OK (GRPO trainer built; no generation run)")
