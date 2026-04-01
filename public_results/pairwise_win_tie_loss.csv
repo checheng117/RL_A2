@@ -1,0 +1,3 @@
+pair,model_a,model_b,wins_a,ties,losses_a,n,tie_eps,win_rate_a,tie_rate,loss_rate_a
+DPO_retune_v2_vs_SFT,dpo_retune_v2,sft,44,10,27,81,1e-08,0.543210,0.123457,0.333333
+GRPO_V4_final_vs_SFT,grpo_v4_final,sft,37,23,21,81,1e-08,0.456790,0.283951,0.259259

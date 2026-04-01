@@ -1,0 +1,6 @@
+run_id,model_family,checkpoint_step,rouge_l_f1,format_rate_loose,strict_format_rate,avg_output_length_tokens,avg_reward,n
+step0_sft_best,SFT,0,0.440823,1.000000,0.987654,124.456790,,81
+grpo_v1_checkpoint_700,GRPO_V1,700,0.442819,1.000000,0.987654,123.617284,1.000000,81
+grpo_v1_final,GRPO_V1,723,0.439581,1.000000,0.987654,123.617284,1.000000,81
+grpo_v4_checkpoint_700,GRPO_V4,700,0.448022,1.000000,1.000000,118.666667,0.499033,81
+grpo_v4_final,GRPO_V4,723,0.449490,1.000000,1.000000,119.481481,0.499161,81

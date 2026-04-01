@@ -1,0 +1,6 @@
+metric,model_or_delta,point_estimate,ci95_low,ci95_high,n,resamples,seed
+mean_rouge_sft,sft,0.440772,0.419127,0.463253,81,20000,20260331
+mean_rouge_dpo_retune_v2,dpo_retune_v2,0.444809,0.424067,0.466078,81,20000,20260331
+mean_rouge_grpo_v4_final,grpo_v4_final,0.449438,0.428507,0.471332,81,20000,20260331
+delta_rouge_dpo_minus_sft,dpo_retune_v2 - sft,0.004037,-0.004947,0.013009,81,20000,20260331
+delta_rouge_grpo_v4_minus_sft,grpo_v4_final - sft,0.008667,-0.000472,0.018320,81,20000,20260331

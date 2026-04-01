@@ -1,0 +1,4 @@
+run,avg_reward,rouge_l_f1,strict_format_rate,format_rate_loose,avg_output_length_tokens,checkpoint_tag
+constant_beta_0.04_step200,1.0000,0.4476,1.000,1.000,119.0,grpo_v1_e2_dense_checkpoint_200
+linear_beta_0.02_to_0.08_step200,1.0000,0.4432,0.988,1.000,123.6,grpo_v1_e2_dense_kl_linear_checkpoint_200
+constant_beta_0.04_step300,1.0000,0.4414,1.000,1.000,121.0,grpo_v1_e2_dense_checkpoint_300

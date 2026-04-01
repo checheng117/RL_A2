@@ -1,0 +1,6 @@
+model,seed,avg_reward,rouge_l_f1,strict_format_rate,format_rate_loose,avg_output_length_tokens,checkpoint_tag
+GRPO_V4,42,0.5009,0.4463,1.000,1.000,119.3,grpo_v4_3090_best
+GRPO_V4,123,0.4952,0.4427,0.988,1.000,125.3,grpo_v4_3090_seed123_best
+SFT,42,0.4966,0.4429,1.000,1.000,119.7,sft_full_3090_best
+SFT,123,0.4974,0.4332,1.000,1.000,115.3,sft_full_3090_seed123_best
+DPO_retune_v2,42,0.4939,0.4407,0.988,1.000,121.3,dpo_lora_3090_retune_v2_best

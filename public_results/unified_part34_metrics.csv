@@ -1,0 +1,5 @@
+model,avg_reward,rouge_l_f1,format_rate_loose,strict_format_rate,avg_output_length_tokens,faithful_heuristic,hacking_heuristic,checkpoint_tag,notes
+SFT_full,,0.4408,1.000,0.988,124.46,Yes,No,sft_full_3090_best,Supervised baseline; not RL-trained.
+DPO_retune_v2,,0.4448,1.000,0.988,121.30,Yes,No,dpo_lora_3090_retune_v2_best,Best DPO variant in this project run.
+GRPO_V1,1.0000,0.4396,1.000,0.988,123.62,Yes,Mild,grpo_v1_3090_best,Tag-focused reward; more hacking-prone.
+GRPO_V4,0.4992,0.4495,1.000,1.000,119.48,Yes,No,grpo_v4_3090_best,Richer reward shaping; improved strict compliance.
